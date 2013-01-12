@@ -9,16 +9,9 @@
     </div>
 </header>
 <div id="body">
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>VB.Net ile Mongodb uygulaması!</h1>
-            </hgroup>
-            <p>
-                Sanatçı Listesi
-            </p>
-        </div>
-    </section>
+    
+    @Html.Partial("Menu")
+    
     <section class="content-wrapper main-content clear-fix">
 
         <ol>
