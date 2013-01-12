@@ -27,11 +27,12 @@ Namespace Connect
 
         Public Function GetArtistFrom_id(id As ObjectId) As Sanatci
             Try
-                Dim qry = Query.EQ("_id", id)
+                'Dim qry = Query.EQ("_id", id)
                 'Dim qry = Query(Of Sanatci).EQ(Function(x) x._id = id)
 
-                Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection()
-                Return Collection.FindOneAs(Of Sanatci)(qry)
+                Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection() '.FindAll.SetSortOrder("Yil").Collection
+                Return Collection.FindOneByIdAs(Of Sanatci)(id) 'Collection.FindOneAs(Of Sanatci)(qry)
+
             Catch generatedExceptionName As MongoConnectionException
                 Return Nothing
             End Try
