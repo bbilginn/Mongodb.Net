@@ -1,0 +1,29 @@
+﻿http://nuget.org/packages/mongocsharpdriver üzerinden driver yüklenir
+Install-Package mongocsharpdriver
+
+Imports MongoDB.Bson
+Imports MongoDB.Driver
+Imports MongoDB.Driver.Builders
+
+----
+
+http://www.hawkinsitgroup.com/net-mongodb-tutorial-example-connect-insert-query
+
+
+
+
+http://code.msdn.microsoft.com/Getting-started-with-37dbd5bd
+http://www.codeproject.com/Articles/87757/MongoDB-and-C
+https://groups.google.com/forum/?fromgroups#!forum/mongodb-user
+
+
+http://www.10gen.com/presentations/mongosf-2011/mongodb-indexing-query-optimization
+https://speakerdeck.com/mongodb/schema-design-kyle-banker-10gen
+
+
+
+http://docs.mongodb.org/manual/core/data-modeling/
+
+
+https://support.mongolab.com/home
+DAL http://www.windowsazure.com/en-us/develop/net/tutorials/website-with-mongodb-mongolab/ ********
