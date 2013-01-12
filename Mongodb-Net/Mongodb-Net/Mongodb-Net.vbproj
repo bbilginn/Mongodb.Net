@@ -160,6 +160,7 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\WebApiConfig.vb" />
     <Compile Include="Controllers\BaseController.vb" />
+    <Compile Include="Controllers\SilController.vb" />
     <Compile Include="Controllers\YeniController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>

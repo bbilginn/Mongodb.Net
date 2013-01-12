@@ -30,13 +30,26 @@ Namespace Connect
                 'Dim qry = Query.EQ("_id", id)
                 'Dim qry = Query(Of Sanatci).EQ(Function(x) x._id = id)
 
-                Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection() '.FindAll.SetSortOrder("Yil").Collection
+                Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection() '.FindAll.SetSortOrder(SortBy.Descending("yil")).Collection
                 Return Collection.FindOneByIdAs(Of Sanatci)(id) 'Collection.FindOneAs(Of Sanatci)(qry)
 
             Catch generatedExceptionName As MongoConnectionException
                 Return Nothing
             End Try
         End Function
+
+        Public Function GetAlbumFrom_id(id As ObjectId) As Album
+            Try
+                Dim qry = Query.EQ("Albums._id", id)
+
+                Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection()
+                Return Collection.FindOneAs(Of Sanatci)(qry).Albums.FirstOrDefault(Function(x) x._id = id)
+
+            Catch generatedExceptionName As MongoConnectionException
+                Return Nothing
+            End Try
+        End Function
+
 
         Public Function CreateArtist(Sanatci As Sanatci) As Boolean
             Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection()
