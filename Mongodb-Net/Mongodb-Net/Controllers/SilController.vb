@@ -12,11 +12,24 @@ Public Class SilController
     Function Album(id As String) As ActionResult
         Dim oid = ObjectId.Parse(id)
         Dim _Album = mCon.GetAlbumFrom_id(oid)
-        MsgBox(_Album.Isim)
+        If _Album IsNot Nothing Then
+            Dim sil = mCon.DeleteAlbum(_Album)
+            If sil Then
+                Return RedirectToAction("Index")
+            End If
+        End If
         Return View()
     End Function
 
-    Function Sanatci() As ActionResult
+    Function Sanatci(id As String) As ActionResult
+        Dim oid = ObjectId.Parse(id)
+        Dim _Artist = mCon.GetArtistFrom_id(oid)
+        If _Artist IsNot Nothing Then
+            Dim sil = mCon.DeleteArtist(_Artist)
+            If sil Then
+                Return RedirectToAction("Index")
+            End If
+        End If
         Return View()
     End Function
 

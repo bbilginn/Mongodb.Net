@@ -74,6 +74,26 @@ Namespace Connect
             End Try
         End Function
 
+        Public Function DeleteArtist(sanatci As Sanatci) As Boolean
+            Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection()
+            Try
+                Return Collection.Remove(Query.EQ("_id", sanatci._id)).Ok
+            Catch ex As MongoCommandException
+                Dim msgLog As String = ex.Message
+                Return False
+            End Try
+        End Function
+
+        Public Function DeleteAlbum(album As Album) As Boolean
+            Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection()
+            Try
+                Return Collection.Remove(Query.EQ("Albums._id", album._id)).Ok
+            Catch ex As MongoCommandException
+                Dim msgLog As String = ex.Message
+                Return False
+            End Try
+        End Function
+
         Private Function GetArtistsCollection() As MongoCollection(Of Sanatci)
             Dim Collection As MongoCollection(Of Sanatci) = db.GetCollection(Of Sanatci)("Sanatci")
             Return Collection
