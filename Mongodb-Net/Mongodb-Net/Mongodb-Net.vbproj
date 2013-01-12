@@ -160,11 +160,11 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\WebApiConfig.vb" />
     <Compile Include="Controllers\BaseController.vb" />
+    <Compile Include="Controllers\YeniController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ArtistEntity.vb" />
-    <Compile Include="Models\Car.vb" />
     <Compile Include="Models\Manager.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -259,6 +259,9 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="packages.config" />
     <Content Include="Views\Shared\Menu.vbhtml" />
+    <Content Include="Views\Yeni\Sanatci.vbhtml" />
+    <Content Include="Views\Shared\Header.vbhtml" />
+    <Content Include="Views\Home\Sanatci.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

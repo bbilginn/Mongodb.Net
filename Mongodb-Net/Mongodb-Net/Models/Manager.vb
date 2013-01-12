@@ -1,4 +1,6 @@
 ﻿Imports MongoDB.Driver
+Imports MongoDB.Driver.Builders
+Imports MongoDB.Bson
 
 
 Namespace Connect
@@ -23,7 +25,29 @@ Namespace Connect
             End Try
         End Function
 
+        Public Function GetArtistFrom_id(id As ObjectId) As Sanatci
+            Try
+                Dim qry = Query.EQ("_id", id)
+                'Dim qry = Query(Of Sanatci).EQ(Function(x) x._id = id)
+
+                Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection()
+                Return Collection.FindOneAs(Of Sanatci)(qry)
+            Catch generatedExceptionName As MongoConnectionException
+                Return Nothing
+            End Try
+        End Function
+
         Public Function CreateArtist(s As Sanatci) As Boolean
+            Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection()
+            Try
+                Return Collection.Insert(s, SafeMode.True).Ok
+            Catch ex As MongoCommandException
+                Dim msgLog As String = ex.Message
+                Return False
+            End Try
+        End Function
+
+        Public Function CreateAlbum(s As Sanatci) As Boolean
             Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection()
             Try
                 Return Collection.Insert(s, SafeMode.True).Ok

@@ -6,6 +6,7 @@ Imports MongoDB.Driver
 Imports MongoDB.Driver.Builders
 
 ----
+http://www.mongodb.org/display/DOCS/CSharp+Driver+Tutorial
 
 http://www.hawkinsitgroup.com/net-mongodb-tutorial-example-connect-insert-query
 
