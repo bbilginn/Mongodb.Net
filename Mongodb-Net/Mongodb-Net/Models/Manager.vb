@@ -37,20 +37,23 @@ Namespace Connect
             End Try
         End Function
 
-        Public Function CreateArtist(s As Sanatci) As Boolean
+        Public Function CreateArtist(Sanatci As Sanatci) As Boolean
             Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection()
             Try
-                Return Collection.Insert(s, SafeMode.True).Ok
+                Return Collection.Insert(Sanatci, SafeMode.True).Ok
             Catch ex As MongoCommandException
                 Dim msgLog As String = ex.Message
                 Return False
             End Try
         End Function
 
-        Public Function CreateAlbum(s As Sanatci) As Boolean
+        Public Function CreateAlbum(Sanatci_id As ObjectId, Album As Album) As Boolean
             Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection()
             Try
-                Return Collection.Insert(s, SafeMode.True).Ok
+                Dim Artist = GetArtistFrom_id(Sanatci_id)
+                Album._id = ObjectId.GenerateNewId
+                Artist.Albums.Add(Album)
+                Return Collection.Save(Artist, SafeMode.True).Ok
             Catch ex As MongoCommandException
                 Dim msgLog As String = ex.Message
                 Return False

@@ -29,11 +29,11 @@ End Code
 
             <div class="display-field">
                 <ul>
-                    @If Model.Albums IsNot Nothing Then ' If item.Albums.Any Then - yemedi ya lan!
+                    @If Model.Albums.Any Then
                         For Each album In Model.Albums
                         @<li>
                             <div>
-                                <span>@album.Isim - @album.Yil - <a href="/Duzenle/Album/@album._id">Düzenle</a></span><br />
+                                <span>@album.Isim - @album.Yil - <a href="/Duzenle/Album/@album._id">Albümü Düzenle</a></span><br />
                                 <img style="height:80px;width:80px;" src="@album.Resim" alt="@album.Isim - @album.Yil" />
                             </div>
                         </li>
@@ -49,7 +49,7 @@ End Code
 
         </fieldset>
         <p>
-            @Html.ActionLink("Düzenle", "Duzenle", New With {.id = Model._id}) |
+            @Html.ActionLink("Sanatçı Düzenle", "Duzenle", New With {.id = Model._id}) |
     @Html.ActionLink("Back to List", "Index")
         </p>
 

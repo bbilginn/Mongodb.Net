@@ -262,6 +262,7 @@
     <Content Include="Views\Yeni\Sanatci.vbhtml" />
     <Content Include="Views\Shared\Header.vbhtml" />
     <Content Include="Views\Home\Sanatci.vbhtml" />
+    <Content Include="Views\Yeni\Album.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
