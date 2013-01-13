@@ -12,10 +12,11 @@ Public Class SilController
     Function Album(id As String) As ActionResult
         Dim oid = ObjectId.Parse(id)
         Dim _Album = mCon.GetAlbumFrom_id(oid)
+        Dim _Artist = mCon.GetArtistFromAlbum_id(oid)
         If _Album IsNot Nothing Then
-            Dim sil = mCon.DeleteAlbum(_Album)
+            Dim sil = mCon.DeleteAlbum(_Artist, _Album)
             If sil Then
-                Return RedirectToAction("Index")
+                Return Redirect(Request.UrlReferrer.AbsoluteUri)
             End If
         End If
         Return View()
@@ -27,7 +28,7 @@ Public Class SilController
         If _Artist IsNot Nothing Then
             Dim sil = mCon.DeleteArtist(_Artist)
             If sil Then
-                Return RedirectToAction("Index")
+                Return Redirect(Request.UrlReferrer.AbsoluteUri)
             End If
         End If
         Return View()

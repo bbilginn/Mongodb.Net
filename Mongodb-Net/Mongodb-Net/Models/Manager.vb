@@ -16,9 +16,11 @@ Namespace Connect
         Private Server As MongoServer = MongoServer.Create(Builder)
         Private db As MongoDatabase = Server("sanatcidb")
 
+        Friend Collection As MongoCollection(Of Sanatci)
+
+
         Public Function GetArtists() As IEnumerable(Of Sanatci)
             Try
-                Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection()
                 Return Collection.FindAll().ToList
             Catch generatedExceptionName As MongoConnectionException
                 Return New List(Of Sanatci)()
@@ -30,8 +32,18 @@ Namespace Connect
                 'Dim qry = Query.EQ("_id", id)
                 'Dim qry = Query(Of Sanatci).EQ(Function(x) x._id = id)
 
-                Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection() '.FindAll.SetSortOrder(SortBy.Descending("yil")).Collection
                 Return Collection.FindOneByIdAs(Of Sanatci)(id) 'Collection.FindOneAs(Of Sanatci)(qry)
+
+            Catch generatedExceptionName As MongoConnectionException
+                Return Nothing
+            End Try
+        End Function
+
+        Public Function GetArtistFromAlbum_id(id As ObjectId) As Sanatci
+            Try
+                Dim qry = Query.EQ("Albums._id", id)
+
+                Return Collection.FindOneAs(Of Sanatci)(qry)
 
             Catch generatedExceptionName As MongoConnectionException
                 Return Nothing
@@ -42,7 +54,6 @@ Namespace Connect
             Try
                 Dim qry = Query.EQ("Albums._id", id)
 
-                Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection()
                 Return Collection.FindOneAs(Of Sanatci)(qry).Albums.FirstOrDefault(Function(x) x._id = id)
 
             Catch generatedExceptionName As MongoConnectionException
@@ -52,7 +63,6 @@ Namespace Connect
 
 
         Public Function CreateArtist(Sanatci As Sanatci) As Boolean
-            Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection()
             Try
                 Return Collection.Insert(Sanatci, SafeMode.True).Ok
             Catch ex As MongoCommandException
@@ -62,7 +72,6 @@ Namespace Connect
         End Function
 
         Public Function CreateAlbum(Sanatci_id As ObjectId, Album As Album) As Boolean
-            Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection()
             Try
                 Dim Artist = GetArtistFrom_id(Sanatci_id)
                 Album._id = ObjectId.GenerateNewId
@@ -75,7 +84,6 @@ Namespace Connect
         End Function
 
         Public Function DeleteArtist(sanatci As Sanatci) As Boolean
-            Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection()
             Try
                 Return Collection.Remove(Query.EQ("_id", sanatci._id)).Ok
             Catch ex As MongoCommandException
@@ -84,10 +92,10 @@ Namespace Connect
             End Try
         End Function
 
-        Public Function DeleteAlbum(album As Album) As Boolean
-            Dim Collection As MongoCollection(Of Sanatci) = GetArtistsCollection()
+        Public Function DeleteAlbum(sanatci As Sanatci, album As Album) As Boolean
             Try
-                Return Collection.Remove(Query.EQ("Albums._id", album._id)).Ok
+                sanatci.Albums.Remove(album)
+                Return Collection.Save(sanatci, SafeMode.True).Ok
             Catch ex As MongoCommandException
                 Dim msgLog As String = ex.Message
                 Return False
@@ -99,6 +107,10 @@ Namespace Connect
             Return Collection
         End Function
 
+
+        Sub New()
+            Collection = GetArtistsCollection()
+        End Sub
 
 #Region "IDisposable"
 
