@@ -92,10 +92,10 @@ Namespace Connect
             End Try
         End Function
 
-        Public Function DeleteAlbum(sanatci As Sanatci, album As Album) As Boolean
+        Public Function DeleteAlbum(Artist As Sanatci, album As Album) As Boolean
             Try
-                sanatci.Albums.Remove(album)
-                Return Collection.Save(sanatci, SafeMode.True).Ok
+                Artist.Albums.Remove(album)
+                Return Collection.Save(Artist, SafeMode.True).Ok
             Catch ex As MongoCommandException
                 Dim msgLog As String = ex.Message
                 Return False
