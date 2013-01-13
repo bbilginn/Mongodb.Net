@@ -8,9 +8,10 @@ Imports MongoDB.Driver.Builders
 ----
 http://www.mongodb.org/display/DOCS/CSharp+Driver+Tutorial
 
+
+http://www.10gen.com/presentations?programming_lang=46
+
 http://www.hawkinsitgroup.com/net-mongodb-tutorial-example-connect-insert-query
-
-
 
 
 http://code.msdn.microsoft.com/Getting-started-with-37dbd5bd
@@ -22,9 +23,9 @@ http://www.10gen.com/presentations/mongosf-2011/mongodb-indexing-query-optimizat
 https://speakerdeck.com/mongodb/schema-design-kyle-banker-10gen
 
 
-
 http://docs.mongodb.org/manual/core/data-modeling/
 
 
 https://support.mongolab.com/home
-DAL http://www.windowsazure.com/en-us/develop/net/tutorials/website-with-mongodb-mongolab/ ********
+
+http://www.windowsazure.com/en-us/develop/net/tutorials/website-with-mongodb-mongolab/
