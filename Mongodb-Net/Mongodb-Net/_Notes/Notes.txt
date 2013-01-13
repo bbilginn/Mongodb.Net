@@ -8,6 +8,9 @@ Imports MongoDB.Driver.Builders
 ----
 http://www.mongodb.org/display/DOCS/CSharp+Driver+Tutorial
 
+http://docs.mongodb.org/manual/crud/
+
+http://docs.mongodb.org/manual/reference/operators/
 
 http://www.10gen.com/presentations?programming_lang=46
 

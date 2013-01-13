@@ -160,6 +160,7 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\WebApiConfig.vb" />
     <Compile Include="Controllers\BaseController.vb" />
+    <Compile Include="Controllers\DuzenleController.vb" />
     <Compile Include="Controllers\SilController.vb" />
     <Compile Include="Controllers\YeniController.vb" />
     <Compile Include="Global.asax.vb">
@@ -264,6 +265,8 @@
     <Content Include="Views\Shared\Header.vbhtml" />
     <Content Include="Views\Home\Sanatci.vbhtml" />
     <Content Include="Views\Yeni\Album.vbhtml" />
+    <Content Include="Views\Duzenle\Album.vbhtml" />
+    <Content Include="Views\Duzenle\Sanatci.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

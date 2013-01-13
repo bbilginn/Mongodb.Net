@@ -94,8 +94,40 @@ Namespace Connect
 
         Public Function DeleteAlbum(Artist As Sanatci, album As Album) As Boolean
             Try
-                Artist.Albums.Remove(album)
-                Return Collection.Save(Artist, SafeMode.True).Ok
+                'Artist.Albums.Remove(album)
+                'Return Collection.Save(Artist, SafeMode.True).Ok
+                Return Collection.Update(
+                Query.EQ("Albums._id", album._id),
+                Update.Pull("Albums.$", BsonDocumentWrapper.Create(Of Album)(album)), SafeMode.True
+                ).Ok
+            Catch ex As MongoCommandException
+                Dim msgLog As String = ex.Message
+                Return False
+            End Try
+        End Function
+
+        Public Function UpdateAlbum(album As Album) As Boolean
+            Try
+                Return Collection.Update(
+                Query.EQ("Albums._id", album._id),
+                Update.Set("Albums.$", BsonDocumentWrapper.Create(Of Album)(album)), SafeMode.True
+                ).Ok
+            Catch ex As MongoCommandException
+                Dim msgLog As String = ex.Message
+                Return False
+            End Try
+        End Function
+
+        Public Function UpdateArtist(sanatci As Sanatci) As Boolean
+            Try
+                'Dim Duz = Collection.FindOneAs(Of Sanatci)(Query.EQ("_id", sanatci._id))
+                'Duz = sanatci
+                'Collection.Save(Duz)
+
+                Return Collection.Update(Query.EQ("_id", sanatci._id),
+                                         Update.Set("$", BsonDocumentWrapper.Create(Of Sanatci)(sanatci)),
+                                         SafeMode.True).Ok
+
             Catch ex As MongoCommandException
                 Dim msgLog As String = ex.Message
                 Return False
