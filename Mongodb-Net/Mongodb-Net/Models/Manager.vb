@@ -96,9 +96,15 @@ Namespace Connect
             Try
                 'Artist.Albums.Remove(album)
                 'Return Collection.Save(Artist, SafeMode.True).Ok
+
+                'Return Collection.Update(
+                'Query.EQ("Albums._id", album._id),
+                'Update.Pull("Albums.$", BsonDocumentWrapper.Create(Of Album)(album)), SafeMode.True
+                ').Ok
+
                 Return Collection.Update(
                 Query.EQ("Albums._id", album._id),
-                Update.Pull("Albums.$", BsonDocumentWrapper.Create(Of Album)(album)), SafeMode.True
+                Update.Pull("Albums", Query.EQ("_id", album._id)), SafeMode.True
                 ).Ok
             Catch ex As MongoCommandException
                 Dim msgLog As String = ex.Message
