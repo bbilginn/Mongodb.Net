@@ -85,7 +85,7 @@ Namespace Connect
 
         Public Function DeleteArtist(sanatci As Sanatci) As Boolean
             Try
-                Return True 'Collection.Remove(Query.EQ("_id", sanatci._id)).Ok
+                Return Collection.Remove(Query.EQ("_id", sanatci._id)).Ok
             Catch ex As MongoCommandException
                 Dim msgLog As String = ex.Message
                 Return False
@@ -126,14 +126,14 @@ Namespace Connect
 
         Public Function UpdateArtist(sanatci As Sanatci) As Boolean
             Try
-                'Dim Duz = Collection.FindOneAs(Of Sanatci)(Query.EQ("_id", sanatci._id))
-                'Duz = sanatci
-                'Collection.Save(Duz)
+                Dim Duz = Collection.FindOneAs(Of Sanatci)(Query.EQ("_id", sanatci._id))
+                Duz = sanatci
+                Collection.Save(Duz)
 
-                Return Collection.Update(Query.EQ("_id", sanatci._id),
-                                         Update.Set("$", BsonDocumentWrapper.Create(Of Sanatci)(sanatci)),
-                                         SafeMode.True).Ok
-
+                'Return Collection.Update(Query.EQ("_id", sanatci._id),
+                '                         Update.Set("$", BsonDocumentWrapper.Create(Of Sanatci)(sanatci)),
+                '                         SafeMode.True).Ok
+                Return True
             Catch ex As MongoCommandException
                 Dim msgLog As String = ex.Message
                 Return False

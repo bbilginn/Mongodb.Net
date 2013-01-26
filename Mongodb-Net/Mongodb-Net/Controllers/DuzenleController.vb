@@ -38,7 +38,7 @@ Public Class DuzenleController
         If ModelState.IsValid Then
             model._id = ObjectId.Parse(id)
             If mCon.UpdateArtist(model) Then
-                Return Redirect(Request.UrlReferrer.AbsoluteUri)
+                Return Redirect("/")
             End If
 
         End If
