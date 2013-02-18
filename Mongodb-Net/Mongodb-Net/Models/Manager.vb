@@ -61,7 +61,6 @@ Namespace Connect
             End Try
         End Function
 
-
         Public Function CreateArtist(Sanatci As Sanatci) As Boolean
             Try
                 Return Collection.Insert(Sanatci, SafeMode.True).Ok
@@ -141,8 +140,7 @@ Namespace Connect
         End Function
 
         Private Function GetArtistsCollection() As MongoCollection(Of Sanatci)
-            Dim Collection As MongoCollection(Of Sanatci) = db.GetCollection(Of Sanatci)("Sanatci")
-            Return Collection
+            Return db.GetCollection(Of Sanatci)("Sanatci")
         End Function
 
 
