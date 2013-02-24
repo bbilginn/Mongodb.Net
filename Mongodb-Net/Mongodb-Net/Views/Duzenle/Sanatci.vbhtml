@@ -34,7 +34,7 @@ End Code
         End Using
 
         <div>
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Back to List", "Index", "Home")
         </div>
 
         @Section Scripts

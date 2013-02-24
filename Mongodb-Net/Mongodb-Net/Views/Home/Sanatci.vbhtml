@@ -51,8 +51,8 @@ End Code
 
         </fieldset>
         <p>
-            @Html.ActionLink("Sanatçıyı Düzenle", "Duzenle", New With {.id = Model._id}) |
-    @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Sanatçıyı Düzenle", "Sanatci", New With {.id = Model._id, .controller = "Duzenle"}) |
+            @Html.ActionLink("Back to List", "Index", "Home")
         </p>
 
     </section>
