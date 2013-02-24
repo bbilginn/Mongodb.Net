@@ -8,6 +8,8 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    @Html.Partial("Header")
+
     @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")

@@ -1,6 +1,5 @@
 ﻿@ModelType IEnumerable(Of Mongodb_Net.Sanatci)
 
-@Html.Partial("Header")
 
 <div id="body">
 

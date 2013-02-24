@@ -4,7 +4,6 @@
     ViewData("Title") = "Yeni Sanatci"
 End Code
 
-@Html.Partial("Header")
 
 <div id="body">
 

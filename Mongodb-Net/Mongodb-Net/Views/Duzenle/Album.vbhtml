@@ -5,7 +5,6 @@
 End Code
 
 
-@Html.Partial("Header")
 
 <div id="body">
 
