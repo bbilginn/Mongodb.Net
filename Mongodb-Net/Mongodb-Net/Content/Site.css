@@ -761,3 +761,13 @@ tr.pager td {
             margin: 0;
         }
 }
+
+table			    { width:100%; border-radius: 5px 5px 5px 5px; border-radius:10px; }
+table caption 		{ background: none #959595; color: #FFFFFF; font-size: 14px; padding: 5px 11px 5px 11px; text-align: left; }
+table tr:hover		{ background: #ffffcc; }
+table th			{ background: #efefef; border-bottom: 1px solid #DDDDDD; border-top: 1px solid #DDDDDD; 
+                      line-height: 20px; padding: 7px 4px; color: #333333; white-space: nowrap; 
+                      border-right:solid 1px #cccccc; border-left:solid 1px #cccccc; padding-left:10px; padding-right:10px;
+                      text-align: left; margin-bottom:5px; }
+table td			{ border-bottom: 1px solid #DDDDDD; line-height: 22px; padding-left:10px;border-right:solid 1px #cccccc; border-left:solid 1px #cccccc;}
+table td.action10	{ padding-top:4px; width:10%;}

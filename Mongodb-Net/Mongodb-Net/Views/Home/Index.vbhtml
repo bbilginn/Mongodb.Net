@@ -8,11 +8,20 @@
 
     <section class="content-wrapper main-content clear-fix">
 
-        <ol>
+        <table>
+            <tr>
+                <th>Sanatçı</th>
+                <th>Albüm</th>
+                <th>İşlemler</th>
+            </tr>
             @For Each item In Model
-                @<li>@item.Ad - <a href="/Home/Sanatci/@item._id">Detay</a> | <a href="/Duzenle/Sanatci/@item._id">Düzenle</a> | <a href="/Sil/Sanatci/@item._id">Sil</a></li>
+                @<tr>
+                    <td style="width:65%">@item.Ad</td>
+                    <td>@item.Albums.Count</td>
+                    <td><a href="/Home/Sanatci/@item._id">Detay</a> | <a href="/Duzenle/Sanatci/@item._id">Düzenle</a> | <a href="/Sil/Sanatci/@item._id">Sil</a></td>
+                </tr>
             Next
-        </ol>
+        </table>
 
     </section>
 </div>
