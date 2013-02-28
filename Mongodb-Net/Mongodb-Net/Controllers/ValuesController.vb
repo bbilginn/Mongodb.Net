@@ -8,8 +8,12 @@ Public Class ValuesController
     Friend mCon As New Manager
 
     ' GET api/values
-    Public Function GetValues() As IEnumerable(Of Sanatci)
-        Return mCon.GetArtists
+    <HttpOptions> <HttpGet>
+    Public Function GetValues() As JsonResult
+        Return New JsonResult() With {
+            .Data = mCon.GetArtists.Select(Function(x) New With {.Ad = x.Ad}),
+            .JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+            .ContentType = "Application/Json"}
     End Function
 
     ' GET api/values/5
