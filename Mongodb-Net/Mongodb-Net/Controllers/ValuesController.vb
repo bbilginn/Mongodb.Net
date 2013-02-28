@@ -28,9 +28,14 @@ Public Class ValuesController
     End Function
 
     ' POST api/values
-    Public Function PostValue(value As Sanatci)
+    Public Function PostValue(value As Sanatci) As String
         Try
-            Return mCon.CreateArtist(value)
+            value._id = ObjectId.GenerateNewId
+            If mCon.CreateArtist(value) Then
+                Return value._id.ToString
+            Else
+                Return False
+            End If
         Catch ex As Exception
             Return ex.Message
         End Try
