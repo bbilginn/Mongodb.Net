@@ -11,7 +11,11 @@ Public Class ValuesController
     <HttpOptions> <HttpGet>
     Public Function GetValues() As JsonResult
         Return New JsonResult() With {
-            .Data = mCon.GetArtists.Select(Function(x) New With {.Ad = x.Ad}),
+            .Data = mCon.GetArtists.Select(Function(x) New With {.Ad = x.Ad,
+                                                                 .Albums = x.Albums.Select(Function(y) New With {
+                                                                                               .Isim = y.Isim,
+                                                                                               .Resim = y.Resim,
+                                                                                               .Yil = y.Yil})}),
             .JsonRequestBehavior = JsonRequestBehavior.AllowGet,
             .ContentType = "Application/Json"}
     End Function
