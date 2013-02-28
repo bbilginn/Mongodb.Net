@@ -7,6 +7,10 @@
 
     <section class="content-wrapper main-content clear-fix">
 
+        <p>
+            Sayfada @Model.Count sanatçı, @Model.Select(Function(x) x.Albums.Count).DefaultIfEmpty(0).Sum albüm bulunmaktadır.
+        </p>
+
         <table>
             <tr>
                 <th>Sanatçı</th>
