@@ -1,6 +1,7 @@
 ﻿Imports System.Net
 Imports System.Web.Http
 Imports Mongodb_Net.Connect
+Imports MongoDB.Bson
 
 Public Class ValuesController
     Inherits ApiController
@@ -11,7 +12,8 @@ Public Class ValuesController
     <HttpOptions> <HttpGet>
     Public Function GetValues() As JsonResult
         Return New JsonResult() With {
-            .Data = mCon.GetArtists.Select(Function(x) New With {.Ad = x.Ad,
+            .Data = mCon.GetArtists.Select(Function(x) New With {._id = x._id.ToString,
+                                                                 .Ad = x.Ad,
                                                                  .Albums = x.Albums.Select(Function(y) New With {
                                                                                                .Isim = y.Isim,
                                                                                                .Resim = y.Resim,
@@ -40,7 +42,12 @@ Public Class ValuesController
     End Sub
 
     ' DELETE api/values/5
-    Public Sub DeleteValue(ByVal id As Integer)
-
-    End Sub
+    Public Function DeleteValue(ByVal id As String)
+        Dim oid = ObjectId.Parse(id)
+        Dim _Artist = mCon.GetArtistFrom_id(oid)
+        If _Artist IsNot Nothing Then
+            Return mCon.DeleteArtist(_Artist)
+        End If
+        Return False
+    End Function
 End Class
