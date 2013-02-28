@@ -9,7 +9,7 @@ Public Class ValuesController
     Friend mCon As New Manager
 
     ' GET api/values
-    <HttpOptions> <HttpGet>
+    <HttpOptions> <HttpGet> <AllowCrossSiteJson>
     Public Function GetValues() As JsonResult
         Return New JsonResult() With {
             .Data = mCon.GetArtists.Select(Function(x) New With {._id = x._id.ToString,
@@ -55,4 +55,12 @@ Public Class ValuesController
         End If
         Return False
     End Function
+End Class
+
+Public Class AllowCrossSiteJsonAttribute
+    Inherits ActionFilterAttribute
+    Public Overrides Sub OnActionExecuting(filterContext As ActionExecutingContext)
+        filterContext.RequestContext.HttpContext.Response.AddHeader("Access-Control-Allow-Origin", "*")
+        MyBase.OnActionExecuting(filterContext)
+    End Sub
 End Class
