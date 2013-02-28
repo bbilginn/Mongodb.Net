@@ -9,7 +9,7 @@ Public Class ValuesController
     Friend mCon As New Manager
 
     ' GET api/values
-    <HttpOptions> <HttpGet> <AllowAnonymous>
+    <HttpOptions> <HttpGet>
     Public Function GetValues() As JsonResult
         Return New JsonResult() With {
             .Data = mCon.GetArtists.Select(Function(x) New With {._id = x._id.ToString,
