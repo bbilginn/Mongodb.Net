@@ -1,12 +1,15 @@
 ﻿Imports System.Net
 Imports System.Web.Http
+Imports Mongodb_Net.Connect
 
 Public Class ValuesController
     Inherits ApiController
 
+    Friend mCon As New Manager
+
     ' GET api/values
-    Public Function GetValues() As IEnumerable(Of String)
-        Return New String() {"value1", "value2"}
+    Public Function GetValues() As IEnumerable(Of Sanatci)
+        Return mCon.GetArtists
     End Function
 
     ' GET api/values/5
