@@ -26,9 +26,13 @@ Public Class ValuesController
     End Function
 
     ' POST api/values
-    Public Sub PostValue(<FromBody()> ByVal value As String)
-
-    End Sub
+    Public Function PostValue(value As Sanatci)
+        Try
+            Return mCon.CreateArtist(value)
+        Catch ex As Exception
+            Return ex.Message
+        End Try
+    End Function
 
     ' PUT api/values/5
     Public Sub PutValue(ByVal id As Integer, <FromBody()> ByVal value As String)
