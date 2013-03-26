@@ -10,11 +10,17 @@ Namespace Connect
         Implements IDisposable
 
         Private Disposed As Boolean = False
-        Private ConnectionString = "server=ds047107.mongolab.com:47107;database=sanatcidb;safe=true;username=SanatciAdmin;Password=123456"
-        Private Builder = New MongoConnectionStringBuilder(ConnectionString)
 
-        Private Server As MongoServer = MongoServer.Create(Builder)
-        Private db As MongoDatabase = Server("sanatcidb")
+        Private srv As String = "ds047107.mongolab.com:47107"
+        Private db As String = "sanatcidb"
+        Private uName As String = "SanatciAdmin"
+        Private psw As String = "123456"
+
+        Private ConnectionString = String.Format("server={0};database={1};safe=true;username={2};Password={3}", srv, db, uName, psw)
+
+        Private mBuilder = New MongoConnectionStringBuilder(ConnectionString)
+        Private mServer As MongoServer = MongoServer.Create(mBuilder)
+        Private mDB As MongoDatabase = mServer(db)
 
         Friend Collection As MongoCollection(Of Sanatci)
 
@@ -140,7 +146,7 @@ Namespace Connect
         End Function
 
         Private Function GetArtistsCollection() As MongoCollection(Of Sanatci)
-            Return db.GetCollection(Of Sanatci)("Sanatci")
+            Return mDB.GetCollection(Of Sanatci)("Sanatci")
         End Function
 
 
@@ -158,8 +164,8 @@ Namespace Connect
         Protected Overridable Sub Dispose(disposing As Boolean)
             If Not Me.Disposed Then
                 If disposing Then
-                    If Server IsNot Nothing Then
-                        Me.Server.Disconnect()
+                    If mServer IsNot Nothing Then
+                        Me.mServer.Disconnect()
                     End If
                 End If
             End If
